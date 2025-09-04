@@ -3,7 +3,7 @@ import prisma from "../../prisma/prisma.js";
 class HouseModel {
   async getAllHouses() {
     const houses = await prisma.house.findMany({
-      include: { characters: true }
+      include: { characters: true, castles: true }
   });
     return houses;
   }
