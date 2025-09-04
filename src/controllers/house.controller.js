@@ -29,8 +29,17 @@ class HouseController {
 
     async createHouse(req, res) {
         const houseData = req.body;
+        
         try {
-            const newHouse = await houseModel.createHouse(houseData);
+            if(!houseData.name){
+                return res.status(400).json({ error: "Nome da casa é obrigatório" });
+            }
+            if(!houseData.bannerUrl){
+                return res.status(400).json({ error: "Foto do estandarte da casa é obrigatória" });
+            }
+
+            const newHouse = await houseModel.createHouse(houseData);  
+
             res.status(201).json(newHouse);
         }   
         catch (error) {
@@ -42,6 +51,9 @@ class HouseController {
         const { id } = req.params;
         const houseData = req.body;
         try {
+            if(!await houseModel.getHouseById(id)){
+                return res.status(404).json({ error: "Casa não encontrada" });
+            }
             const updatedHouse = await houseModel.updateHouse(id, houseData);
             res.json(updatedHouse);
         }           
@@ -53,6 +65,9 @@ class HouseController {
     async deleteHouse(req, res) {
         const { id } = req.params;  
         try {
+            if(!await houseModel.getHouseById(id)){
+                return res.status(404).json({ error: "Casa não encontrada" });
+            }
             await houseModel.deleteHouse(id);
             res.status(204).end();
         }

@@ -31,6 +31,8 @@ model House {
 
 model Character {
   id            Int     @id @default(autoincrement())
+  name       String
+  
 
   houseId Int
   house   House @relation(fields: [houseId], references: [id], onDelete: Cascade, onUpdate: Cascade)

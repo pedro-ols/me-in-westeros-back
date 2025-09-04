@@ -2,7 +2,9 @@ import prisma from "../../prisma/prisma.js";
 
 class HouseModel {
   async getAllHouses() {
-    const houses = await prisma.house.findMany();
+    const houses = await prisma.house.findMany({
+      include: { characters: true }
+  });
     return houses;
   }
   async getHouseById(id) {
