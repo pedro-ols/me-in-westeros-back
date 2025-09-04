@@ -1,26 +1,46 @@
 import prisma from "../../prisma/prisma.js";
 
-export const getAllHouses = async () => {
-  return await prisma.house.findMany();
+class HouseModel {
+  async getAllHouses() {
+    const houses = await prisma.house.findMany();
+    return houses;
+  }
+  async getHouseById(id) {
+    const house = await prisma.house.findUnique({
+      where: { id: Number(id) },
+    });
+
+    return house;
+  }
+  async createHouse(house) {
+    const createdHouse = await prisma.house.create({
+      data: house,
+    });
+
+    return createdHouse;
+  }
+  async updateHouse(id){
+    const updatedHouse = await prisma.house.update({
+      where: { id: Number(id) },
+      data: house,
+    });
+    return updatedHouse;
+  }
+  async delete(id) {
+    const deletedHouse = await this.findById(id);
+
+    if (!deletedHouse) {
+      return null;
+    }
+
+    await prisma.house.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+
+    return true;
+  }
 }
-export const getHouseById = async (id) => {
-  return await prisma.house.findUnique({
-    where: { id: Number(id) },
-  });
-}
-export const createHouse = async (house) => {
-  return await prisma.house.create({
-    data: house,
-  });
-}
-export const updateHouse = async (id, house) => {
-  return await prisma.house.update({
-    where: { id: Number(id) },
-    data: house,
-  });
-}
-export const deleteHouse = async (id) => {
-  return await prisma.house.delete({
-    where: { id: Number(id) },
-  });
-}
+ 
+export default new HouseModel;
