@@ -19,15 +19,18 @@ class HouseModel {
 
     return createdHouse;
   }
-  async updateHouse(id){
-    const updatedHouse = await prisma.house.update({
+  async updateHouse(id, house){
+    const updatedHouse = await this.getHouseById(id);
+    
+    await prisma.house.update({
       where: { id: Number(id) },
       data: house,
     });
     return updatedHouse;
   }
-  async delete(id) {
-    const deletedHouse = await this.findById(id);
+
+  async deleteHouse(id) {
+    const deletedHouse = await this.getHouseById(id);
 
     if (!deletedHouse) {
       return null;
@@ -39,7 +42,7 @@ class HouseModel {
       },
     });
 
-    return true;
+    return deletedHouse;
   }
 }
  
