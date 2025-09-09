@@ -1,16 +1,16 @@
 import express from "express";
-import castleController from "../controllers/castle.controller.js";
+import CastleController from "../controllers/castle.controller.js";
 
 const castleRouter = express.Router();
 
-castleRouter.get("/", castleController.getAllCastles);
+castleRouter.get("/", CastleController.getAllCastles);
 
-castleRouter.get("/:id", castleController.getCastleById);
+castleRouter.get("/:id", CastleController.getCastleById);
 
-castleRouter.post("/", castleController.createCastle);
+castleRouter.post("/", CastleController.createCastle);
 
-castleRouter.put("/:id", castleController.updateCastle);
+castleRouter.put("/:id", CastleController.updateCastle);
 
-castleRouter.delete("/:id", castleController.deleteCastle);
+castleRouter.delete("/:id", CastleController.deleteCastle);
 
 export default castleRouter;

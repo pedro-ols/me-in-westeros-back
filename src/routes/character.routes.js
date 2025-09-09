@@ -1,16 +1,16 @@
 import express from "express";
-import characterController from "../controllers/character.controller.js";
+import CharacterController from "../controllers/character.controller.js";
 
 const characterRouter = express.Router();
 
-characterRouter.get("/", characterController.getAllCharacters);
+characterRouter.get("/", CharacterController.getAllCharacters);
 
-characterRouter.get("/:id", characterController.getCharacterById);
+characterRouter.get("/:id", CharacterController.getCharacterById);
 
-characterRouter.post("/", characterController.createCharacter);
+characterRouter.post("/", CharacterController.createCharacter);
 
-characterRouter.put("/:id", characterController.updateCharacter);
+characterRouter.put("/:id", CharacterController.updateCharacter);
 
-characterRouter.delete("/:id", characterController.deleteCharacter);
+characterRouter.delete("/:id", CharacterController.deleteCharacter);
 
 export default characterRouter;
