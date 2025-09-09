@@ -34,7 +34,7 @@ async function main() {
                 name: "Targaryen",
                 bannerUrl: "https://example.com/targaryen.jpg",
                 bannerAlt: "Dragão vermelho de três cabeças em fundo preto",
-                realm: "Ponta Tempestade",
+                realm: "As Terras da Coroa",
                 slogan: "Fogo e Sangue",
                 history:
                     "A Casa Targaryen é uma casa nobre de origem valiriana, conhecida por seus dragões e sua linhagem real. Eles governaram Westeros por quase 300 anos antes de serem derrubados na Rebelião de Robert.",
@@ -53,59 +53,32 @@ async function main() {
     });
 
     //Personagens 
-    const per = [
-        {
-            "name": "Eddard Stark",
-            "houseId": stark.id,
-            "atributo": "força"
-        },
-        {
-            "name": "Catelyn Stark",
-            "houseId": stark.id,
-        },
-        {
-            "name": "Robb Stark",
-            "houseId": stark.id,
-        },
-        {
-            "name": "Sansa Stark",
-            "houseId": stark.id,
-        },
-        {
-            "name": "Arya Stark",
-            "houseId": stark.id,
-        },
-        {
-            "name": "Bran Stark",
-            "houseId": stark.id,
-        },
-        {
-            "name": "Rickon Stark",
-            "houseId": stark.id,
-        },
-        {
-            "name": "Tywin Lannister",
-            "houseId": lannister.id,
-        },
-        {
-            "name": "Cersei Lannister",
-            "houseId": lannister.id,
-        },
-        {
-            "name": "Jaime Lannister",
-            "houseId": lannister.id,
-        },
-        {
-            "name": "Tyrion Lannister",
-            "houseId": lannister.id,
-        },
-    ]
 
-    per.map(async (p) => {
-        await prisma.character.create({
-            data: p
+    const starkCharacters =  await Promisse.all([
+        prisma.character.createMany({
+        data: {
+            name: "Jon Snow",
+            houseId: stark.id,
+            atributes: [
+                {
+                    name: "Strength",
+                    value: 8
+                },
+                {
+                    name: "Agility",
+                    value: 7   
+                },
+                {
+                    name: "Intelligence",
+                    value: 6
+                }
+            ],
+            imageUrl: "https://example.com/jonsnow.jpg",
+        },
         })
-    })
+    ]);          
+
+            
 
     const jonSnow = await prisma.character.create({
         data: {
