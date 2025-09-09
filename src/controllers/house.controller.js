@@ -2,13 +2,13 @@ import houseModel from "../models/house.model.js";
 
 class HouseController {
     async getAllHouses(req, res) {
-        try {   
+        try {
             const houses = await houseModel.getAllHouses();
+            res.status(200).json({ error: "Casas encontradas com êxito" });
             res.json(houses);
-        }       
-        catch (error) {
+        } catch (error) {
             res.status(500).json({ error: "Erro ao buscar casas" });
-        }   
+        }
     }
 
     async getHouseById(req, res) {
@@ -16,64 +16,65 @@ class HouseController {
         try {
             const house = await houseModel.getHouseById(id);
             if (house) {
+                res.status(200).json({ error: "Casa encontrada com êxito" });
                 res.json(house);
-            }   
-            else {
+            } else {
                 res.status(404).json({ error: "Casa não encontrada" });
-            }   
-        }   
-        catch (error) {
+            }
+        } catch (error) {
             res.status(500).json({ error: "Erro ao buscar casa" });
         }
     }
 
     async createHouse(req, res) {
         const houseData = req.body;
-        
+
         try {
-            if(!houseData.name){
+            if (!houseData.name) {
                 return res.status(400).json({ error: "Nome da casa é obrigatório" });
             }
-            if(!houseData.bannerUrl){
-                return res.status(400).json({ error: "Foto do estandarte da casa é obrigatória" });
+            if (!houseData.bannerUrl) {
+                return res
+                    .status(400)
+                    .json({ error: "Foto do estandarte da casa é obrigatória" });
             }
-
-            const newHouse = await houseModel.createHouse(houseData);  
+            const newHouse = await houseModel.createHouse(houseData);
 
             res.status(201).json(newHouse);
-        }   
-        catch (error) {
+        } catch (error) {
             res.status(500).json({ error: "Erro ao criar casa" });
-        }   
+        }
     }
 
     async updateHouse(req, res) {
         const { id } = req.params;
         const houseData = req.body;
         try {
-            if(!await houseModel.getHouseById(id)){
+            if (!(await houseModel.getHouseById(id))) {
                 return res.status(404).json({ error: "Casa não encontrada" });
             }
             const updatedHouse = await houseModel.updateHouse(id, houseData);
+
+            res.status(200).json({ error: "Casa atualizada com êxito" });
             res.json(updatedHouse);
-        }           
-        catch (error) {
+        } catch (error) {
             res.status(500).json({ error: "Erro ao atualizar casa" });
         }
     }
 
     async deleteHouse(req, res) {
-        const { id } = req.params;  
+        const { id } = req.params;
         try {
-            if(!await houseModel.getHouseById(id)){
+            if (!(await houseModel.getHouseById(id))) {
                 return res.status(404).json({ error: "Casa não encontrada" });
             }
             await houseModel.deleteHouse(id);
+            
+            res.status(200).json({ error: "Casa deletada com êxito" });
             res.status(204).end();
-        }
-        catch (error) {
+        } catch (error) {
             res.status(500).json({ error: "Erro ao deletar casa" });
-        }   
+        }
     }
 }
 

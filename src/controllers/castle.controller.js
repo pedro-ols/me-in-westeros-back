@@ -4,10 +4,11 @@ class CastleController {
     async getAllCastles(req, res) {
         try {   
             const castles = await CastleModel.getAllCastles();
+            res.status(200).json({ error: "Castelos encontrados com êxito" });
             res.json(castles);
         }       
         catch (error) {
-            res.status(500).json({ error: "Erro ao buscar personagens" });
+            res.status(500).json({ error: "Erro ao buscar castelos" });
         }   
     }
 
@@ -16,36 +17,37 @@ class CastleController {
         try {
             const castle = await CastleModel.getCastleById(id);
             if (castle) {
+                res.status(200).json({ error: "Castelo encontrado com êxito" });
                 res.json(castle);
             }   
             else {
-                res.status(404).json({ error: "Personagem não encontrado" });
+                res.status(404).json({ error: "Castelo não encontrado" });
             }   
         }   
         catch (error) {
-            res.status(500).json({ error: "Erro ao buscar personagem" });
+            res.status(500).json({ error: "Erro ao buscar castelo" });
         }
     }
 
     async createCastle(req, res) {
         const castleData = req.body;
-        // console.log(castleData);
         
         
         try {
             if(!castleData.name){
-                return res.status(400).json({ error: "Nome do personagem é obrigatório" });
+                return res.status(400).json({ error: "Nome do castelo é obrigatório" });
             }
             if(!castleData.houseId){
-                return res.status(400).json({ error: "Casa do personagem é obrigatória" });
+                return res.status(400).json({ error: "Casa do castelo é obrigatória" });
             }
 
             const newCastle = await CastleModel.createCastle(castleData);  
 
+            res.status(200).json({ error: "Castelo criado com êxito" });
             res.status(201).json(newCastle);
         }   
         catch (error) {
-            res.status(500).json({ error: "Erro ao criar personagem" });
+            res.status(500).json({ error: "Erro ao criar castelo" });
         }   
     }
 
@@ -54,13 +56,14 @@ class CastleController {
         const castleData = req.body;
         try {
             if(!await CastleModel.getCastleById(id)){
-                return res.status(404).json({ error: "Personagem não encontrado" });
+                return res.status(404).json({ error: "Castelo não encontrado" });
             }
             const updatedCastle = await CastleModel.updateCastle(id, castleData);
+            res.status(200).json({ error: "Castelo atualizado com êxito" });
             res.json(updatedCastle);
         }           
         catch (error) {
-            res.status(500).json({ error: "Erro ao atualizar personagem" });
+            res.status(500).json({ error: "Erro ao atualizar castelo" });
         }
     }
 
@@ -68,13 +71,14 @@ class CastleController {
         const { id } = req.params;  
         try {
             if(!await CastleModel.getCastleById(id)){
-                return res.status(404).json({ error: "Personagem não encontrado" });
+                return res.status(404).json({ error: "Castelo não encontrado" });
             }
             await CastleModel.deleteCastle(id);
+            res.status(200).json({ error: "Castelo deletado com êxito" });
             res.status(204).end();
         }
         catch (error) {
-            res.status(500).json({ error: "Erro ao deletar personagem" });
+            res.status(500).json({ error: "Erro ao deletar castelo" });
         }   
     }
 }
