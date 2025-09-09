@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,13 +8,15 @@ datasource db {
 }
 
 model House {
-  id          Int     @id @default(autoincrement())
-  name        String  
-  bannerUrl  String
-  bannerAlt  String?
-  Realm       String?   
+  id        Int     @id @default(autoincrement())
+  name      String
+  bannerUrl String
+  bannerAlt String?
+  realm     String?
+  slogan    String?
+  history   String?
 
-  castles      Castle[]
+  castles    Castle[]
   characters Character[]
 
   createdAt DateTime @default(now())
@@ -30,9 +26,13 @@ model House {
 }
 
 model Character {
-  id            Int     @id @default(autoincrement())
-  name       String
+  id       Int     @id @default(autoincrement())
+  name     String
+  imageUrl String?
 
+  actor Actor?
+
+  atributes Atribute[]
 
   houseId Int
   house   House @relation(fields: [houseId], references: [id], onDelete: Cascade, onUpdate: Cascade)
@@ -43,9 +43,43 @@ model Character {
   @@map("characters")
 }
 
+model Actor {
+  id       Int     @id @default(autoincrement())
+  name     String
+  imageUrl String?
+  age      Int?
+
+  characterId Int       @unique
+  character   Character @relation(fields: [characterId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("actors")
+}
+
+model Atribute {
+  id           Int @id @default(autoincrement())
+  strength     Int
+  intelligence Int
+  agility      Int
+  endurance    Int
+  perception   Int
+  charisma     Int
+  luck         Int
+
+  characterId Int
+  character   Character @relation(fields: [characterId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("atributes")
+}
+
 model Castle {
-  id            Int     @id @default(autoincrement())
-  name      String
+  id   Int    @id @default(autoincrement())
+  name String
 
   houseId Int?
   house   House? @relation(fields: [houseId], references: [id])
@@ -54,4 +88,19 @@ model Castle {
   updatedAt DateTime @updatedAt
 
   @@map("castles")
+}
+
+model Book {
+  id          Int     @id @default(autoincrement())
+  title       String
+  volume      Int?
+  releaseYear Int?
+  coverUrl    String?
+  coverAlt    String?
+  synopsis    String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("books")
 }

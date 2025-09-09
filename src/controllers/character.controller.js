@@ -5,8 +5,7 @@ class characterController {
         try {
             const characters = await characterModel.getAllCharacters();
 
-            res.status(200).json({ error: "Personagens encontrados com êxito" });
-            res.json(characters);
+            res.status(200).json({ message: "Personagens encontrados com êxito", characters });
         }
         catch (error) {
             res.status(500).json({ error: "Erro ao buscar personagens" });
@@ -19,8 +18,7 @@ class characterController {
             const character = await characterModel.getCharacterById(id);
             if (character) {
 
-                res.status(200).json({ error: "Personagen encontrado com êxito" });
-                res.json(character);
+                res.status(200).json({ message: "Personagem encontrado com êxito", character });
             }
             else {
                 res.status(404).json({ error: "Personagem não encontrado" });
@@ -44,8 +42,7 @@ class characterController {
 
             const newCharacter = await characterModel.createCharacter(characterData);
 
-            res.status(200).json({ error: "Personagen criado com êxito" });
-            res.status(201).json(newCharacter);
+            res.status(200).json({ message: "Personagem criado com êxito", newCharacter });
         }
         catch (error) {
             res.status(500).json({ error: "Erro ao criar personagem" });
@@ -61,8 +58,7 @@ class characterController {
             }
             const updatedcharacter = await characterModel.updateCharacter(id, characterData);
 
-            res.status(200).json({ error: "Personagen atualizado com êxito" });
-            res.json(updatedcharacter);
+            res.status(200).json({ message: "Personagem atualizado com êxito", updatedcharacter });
         }
         catch (error) {
             res.status(500).json({ error: "Erro ao atualizar personagem" });
@@ -76,8 +72,8 @@ class characterController {
                 return res.status(404).json({ error: "Personagem não encontrado" });
             }
             await characterModel.deleteCharacter(id);
-            
-            res.status(200).json({ error: "Personagen deletado com êxito" });
+
+            res.status(200).json({ message: "Personagem deletado com êxito" });
             res.status(204).end();
         }
         catch (error) {

@@ -4,8 +4,7 @@ class CastleController {
     async getAllCastles(req, res) {
         try {   
             const castles = await CastleModel.getAllCastles();
-            res.status(200).json({ error: "Castelos encontrados com êxito" });
-            res.json(castles);
+            res.status(200).json({ message: "Castelos encontrados com êxito", castles });
         }       
         catch (error) {
             res.status(500).json({ error: "Erro ao buscar castelos" });
@@ -17,8 +16,7 @@ class CastleController {
         try {
             const castle = await CastleModel.getCastleById(id);
             if (castle) {
-                res.status(200).json({ error: "Castelo encontrado com êxito" });
-                res.json(castle);
+                res.status(200).json({ message: "Castelo encontrado com êxito", castle });
             }   
             else {
                 res.status(404).json({ error: "Castelo não encontrado" });
@@ -43,8 +41,7 @@ class CastleController {
 
             const newCastle = await CastleModel.createCastle(castleData);  
 
-            res.status(200).json({ error: "Castelo criado com êxito" });
-            res.status(201).json(newCastle);
+            res.status(200).json({ message: "Castelo criado com êxito", newCastle });
         }   
         catch (error) {
             res.status(500).json({ error: "Erro ao criar castelo" });
@@ -59,8 +56,7 @@ class CastleController {
                 return res.status(404).json({ error: "Castelo não encontrado" });
             }
             const updatedCastle = await CastleModel.updateCastle(id, castleData);
-            res.status(200).json({ error: "Castelo atualizado com êxito" });
-            res.json(updatedCastle);
+            res.status(200).json({ message: "Castelo atualizado com êxito", updatedCastle });
         }           
         catch (error) {
             res.status(500).json({ error: "Erro ao atualizar castelo" });
@@ -74,7 +70,7 @@ class CastleController {
                 return res.status(404).json({ error: "Castelo não encontrado" });
             }
             await CastleModel.deleteCastle(id);
-            res.status(200).json({ error: "Castelo deletado com êxito" });
+            res.status(200).json({ message: "Castelo deletado com êxito" });
             res.status(204).end();
         }
         catch (error) {
