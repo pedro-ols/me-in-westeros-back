@@ -2,9 +2,7 @@ import prisma from "../../prisma/prisma.js";
 
 class CharacterModel {
   async getAllCharacters() {
-    const characters = await prisma.character.findMany({
-      include: { atributes: true },
-    });
+    const characters = await prisma.character.findMany({});
     return characters;
   }
   async getCharacterById(id) {

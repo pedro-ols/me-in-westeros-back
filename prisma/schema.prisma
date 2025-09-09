@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -32,7 +32,7 @@ model Character {
 
   actor Actor?
 
-  atributes Atribute[]
+  atributes Json[]
 
   houseId Int
   house   House @relation(fields: [houseId], references: [id], onDelete: Cascade, onUpdate: Cascade)
@@ -56,25 +56,6 @@ model Actor {
   updatedAt DateTime @updatedAt
 
   @@map("actors")
-}
-
-model Atribute {
-  id           Int @id @default(autoincrement())
-  strength     Int
-  intelligence Int
-  agility      Int
-  endurance    Int
-  perception   Int
-  charisma     Int
-  luck         Int
-
-  characterId Int
-  character   Character @relation(fields: [characterId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("atributes")
 }
 
 model Castle {
