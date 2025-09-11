@@ -54,141 +54,547 @@ async function main() {
 
     //Personagens 
 
-    const starkCharacters =  await Promisse.all([
-        prisma.character.createMany({
+    const starkCharacters =  await Promise.all([
+        prisma.character.create({
+        data: {
+            name: "Eddard (Ned) Stark",
+            houseId: stark.id,
+            atributes: [
+                {
+                    name: "Força",
+                    value: 16
+                },
+                {
+                    name: "Inteligência",
+                    value: 15
+                },
+                {
+                    name: "Carisma",
+                    value: 8
+                },
+                { 
+                    name: "Lealdade",
+                    value: 20
+                },
+                {
+                    name: "Coragem",
+                    value: 17
+                },
+                {
+                    name: "Influência",
+                    value: 18
+                }
+            ],
+            imageUrl: "https://example.com/jonsnow.jpg",
+            titles:[
+                { name: "Senhor de Winterfell" },
+                { name: "Protetor do Norte" },
+            ]
+        },
+        }),
+        prisma.character.create({
+        data: {
+            name: "Catelyn Stark",
+            houseId: stark.id,
+            atributes: [
+                {
+                    name: "Força",
+                    value: 6
+                },
+                {
+                    name: "Inteligência",
+                    value: 8
+                },
+                {
+                    name: "Carisma",
+                    value: 13
+                },
+                { 
+                    name: "Lealdade",
+                    value: 17
+                },
+                {
+                    name: "Coragem",
+                    value: 17
+                },
+                {
+                    name: "Influência",
+                    value: 11
+                }
+            ],
+            imageUrl: "https://example.com/jonsnow.jpg",
+            titles: [
+                { name: "Senhora de Winterfell" }
+            ] 
+        },
+        }),
+        prisma.character.create({
+        data: {
+            name: "Robb Stark",
+            houseId: stark.id,
+            atributes: [
+                {
+                    name: "Força",
+                    value: 16
+                },
+                {
+                    name: "Inteligência",
+                    value: 15
+                },
+                {
+                    name: "Carisma",
+                    value: 13
+                },
+                { 
+                    name: "Lealdade",
+                    value: 18
+                },
+                {
+                    name: "Coragem",
+                    value: 15
+                },
+                {
+                    name: "Influência",
+                    value: 14
+                }
+            ],
+            imageUrl: "https://example.com/jonsnow.jpg",
+            titles: [
+                { name: "Herdeiro de Winterfell" },
+                { name: "Rei do Norte" },
+                { name: "O Jovem Lobo" }
+            ]
+        },
+        }),
+        prisma.character.create({
         data: {
             name: "Jon Snow",
             houseId: stark.id,
             atributes: [
                 {
-                    name: "Strength",
-                    value: 8
+                    name: "Força",
+                    value: 14
                 },
                 {
-                    name: "Agility",
-                    value: 7   
+                    name: "Inteligência",
+                    value: 9
                 },
                 {
-                    name: "Intelligence",
-                    value: 6
+                    name: "Carisma",
+                    value: 16
+                },
+                { 
+                    name: "Lealdade",
+                    value: 16
+                },
+                {
+                    name: "Coragem",
+                    value: 18
+                },
+                {
+                    name: "Influência",
+                    value: 14
                 }
             ],
             imageUrl: "https://example.com/jonsnow.jpg",
+            titles: [
+                { name: "Lorde Snow" },
+                { name: "O bastardo de Ned Stark" },
+                { name: "Senhor Comandante da Patrula da Noite" },
+                { name: "Rei do Norte" }
+            ]
         },
-        })
-    ]);          
-
-            
-
-    const jonSnow = await prisma.character.create({
+        }),
+        prisma.character.create({
         data: {
-            name: "Jon Snow",
+            name: "Arya Stark",
             houseId: stark.id,
-            role: "Protagonista",
-            description:
-                "Jon Snow é o filho bastardo de Eddard Stark, criado em Winterfell. Ele se junta à Patrulha da Noite e eventualmente se torna seu Lorde Comandante. Jon é conhecido por sua honra, coragem e liderança.",
+            atributes: [
+                {
+                    name: "Força",
+                    value: 6
+                },
+                {
+                    name: "Inteligência",
+                    value: 15
+                },
+                {
+                    name: "Carisma",
+                    value: 10
+                },
+                { 
+                    name: "Lealdade",
+                    value: 10
+                },
+                {
+                    name: "Coragem",
+                    value: 17
+                },
+                {
+                    name: "Influência",
+                    value: 4
+                }
+            ],
             imageUrl: "https://example.com/jonsnow.jpg",
+            titles: [
+                { name: "Princesa de Winterfell" },
+                { name: "Garota sem-rosto" }
+            ]
         },
-    });
+        }),
+        prisma.character.create({
+        data: {
+            name: "Bran Stark",
+            houseId: stark.id,
+            atributes: [
+                {
+                    name: "Força",
+                    value: 2
+                },
+                {
+                    name: "Inteligência",
+                    value: 13
+                },
+                {
+                    name: "Carisma",
+                    value: 17
+                },
+                { 
+                    name: "Lealdade",
+                    value: 15
+                },
+                {
+                    name: "Coragem",
+                    value: 17
+                },
+                {
+                    name: "Influência",
+                    value: 5
+                }
+            ],
+            imageUrl: "https://example.com/jonsnow.jpg",
+            titles: [
+                { name: "Bran, o quebrado" },
+                { name: "Príncipe de Winterfell" },
+                { name: "O Corvo de Três Olhos" }
+            ]
+        },
+        }),
+        prisma.character.create({
+        data: {
+            name: "Sansa Stark",
+            houseId: stark.id,
+            atributes: [
+                {
+                    name: "Força",
+                    value: 4
+                },
+                {
+                    name: "Inteligência",
+                    value: 11
+                },
+                {
+                    name: "Carisma",
+                    value: 19
+                },
+                { 
+                    name: "Lealdade",
+                    value: 15
+                },
+                {
+                    name: "Coragem",
+                    value: 10
+                },
+                {
+                    name: "Influência",
+                    value: 5
+                }
+            ],
+            imageUrl: "https://example.com/jonsnow.jpg",
+            titles: [
+                { name: "Princesa de Winterfell" },
+                { name: "Rainha do Norte" }
 
-    const tyrionLannister = await prisma.character.create({
+        ]
+        },
+        }),
+        prisma.character.create({
+        data: {
+            name: "Rickon Stark",
+            houseId: stark.id,
+            atributes: [
+                {
+                    name: "Força",
+                    value: 2
+                },
+                {
+                    name: "Inteligência",
+                    value: 13
+                },
+                {
+                    name: "Carisma",
+                    value: 17
+                },
+                { 
+                    name: "Lealdade",
+                    value: 15
+                },
+                {
+                    name: "Coragem",
+                    value: 17
+                },
+                {
+                    name: "Influência",
+                    value: 5
+                }
+            ],
+            imageUrl: "https://example.com/jonsnow.jpg",
+            titles: [
+                { name: "O Último Stark" }  
+            ]
+        },
+        }),
+    ]); 
+    const lannisterCharacters =  await Promise.all([
+        prisma.character.create({
+        data: {
+            name: "Tywin Lannister",
+            houseId: lannister.id,
+            atributes: [
+                {
+                    name: "Força",
+                    value: 12
+                },
+                {
+                    name: "Inteligência",
+                    value: 18
+                },
+                {
+                    name: "Carisma",
+                    value: 10
+                },
+                {
+                    name: "Lealdade",
+                    value: 8
+                },
+                {
+                    name: "Coragem",
+                    value: 13
+                },
+                {
+                    name: "Influência",
+                    value: 20
+                }
+            ],
+            imageUrl: "https://example.com/jonsnow.jpg",
+            titles: [
+                { name: "Lorde de Rochedo Casterly" },
+                { name: "Mão do Rei" }
+            ]   
+        },
+        }),
+        prisma.character.create({
         data: {
             name: "Tyrion Lannister",
             houseId: lannister.id,
-            role: "Protagonista",
-            description:
-                "Tyrion Lannister, também conhecido como 'O Imp', é o filho mais novo de Tywin Lannister. Apesar de ser desprezado por sua família devido à sua estatura, Tyrion é inteligente, astuto e possui um senso de humor afiado.",
-            imageUrl: "https://example.com/tyrion.jpg",
+            atributes: [
+                {
+                    name: "Força",
+                    value: 6
+                },
+                {
+                    name: "Inteligência",
+                    value: 20
+                },
+                {
+                    name: "Carisma",
+                    value: 5
+                },
+                {
+                    name: "Lealdade",
+                    value: 17
+                },
+                {
+                    name: "Coragem",
+                    value: 14
+                },
+                {
+                    name: "Influência",
+                    value: 16
+                }
+            ],
+            imageUrl: "https://example.com/jonsnow.jpg",
+            titles: [
+                { name: "O duende" },
+                { name: "Mão do Rei" }
+            ]   
         },
-    });
+        }),
+        
+        prisma.character.create({
+        data: {
+            name: "Cersei Lannister",
+            houseId: lannister.id,
+            atributes: [
+                {
+                    name: "Força",
+                    value: 7
+                },
+                {
+                    name: "Inteligência",
+                    value: 16
+                },
+                {
+                    name: "Carisma",
+                    value: 18
+                },
+                {
+                    name: "Lealdade",
+                    value: 8
+                },
+                {   
+                    name: "Coragem",
+                    value: 9
+                },
+                {
+                    name: "Influência",
+                    value: 19
+                }
+            ],
+            imageUrl: "https://example.com/jonsnow.jpg",
+            titles: [
+                { name: "Rainha dos Sete Reinos" },
+                { name: "Rainha Regente" }
+            ]
+        },
+        }),
+        prisma.character.create({
+        data: {
+            name: "Jaime Lannister",
+            houseId: lannister.id,
+            atributes: [
+                {
+                    name: "Força",
+                    value: 20
+                },
+                {
+                    name: "Inteligência",
+                    value: 10
+                },
+                {
 
-    console.log("Casas criadas. Inserindo cards...");
-
-    // Cards para NBA Legends
-    const nbaCards = await Promise.all([
-        prisma.card.create({
-            data: {
-                name: "Michael Jordan",
-                rarity: "Ultra Rare",
-                attackPoints: 9800,
-                defensePoints: 9200,
-                imageUrl: "https://example.com/jordan.jpg",
-                collectionId: nbaLegends.id,
-            },
-        }),
-        prisma.card.create({
-            data: {
-                name: "LeBron James",
-                rarity: "Ultra Rare",
-                attackPoints: 9700,
-                defensePoints: 9500,
-                imageUrl: "https://example.com/lebron.jpg",
-                collectionId: nbaLegends.id,
-            },
-        }),
-        prisma.card.create({
-            data: {
-                name: "Kobe Bryant",
-                rarity: "Ultra Rare",
-                attackPoints: 9600,
-                defensePoints: 9300,
-                imageUrl: "https://example.com/kobe.jpg",
-                collectionId: nbaLegends.id,
-            },
-        }),
-        prisma.card.create({
-            data: {
-                name: "Magic Johnson",
-                rarity: "Super Rare",
-                attackPoints: 9400,
-                defensePoints: 8700,
-                imageUrl: "https://example.com/magic.jpg",
-                collectionId: nbaLegends.id,
-            },
-        }),
-        prisma.card.create({
-            data: {
-                name: "Larry Bird",
-                rarity: "Super Rare",
-                attackPoints: 9300,
-                defensePoints: 8800,
-                imageUrl: "https://example.com/bird.jpg",
-                collectionId: nbaLegends.id,
-            },
-        }),
-        prisma.card.create({
-            data: {
-                name: "Shaquille O'Neal",
-                rarity: "Super Rare",
-                attackPoints: 9500,
-                defensePoints: 9400,
-                imageUrl: "https://example.com/shaq.jpg",
-                collectionId: nbaLegends.id,
-            },
-        }),
-        prisma.card.create({
-            data: {
-                name: "Stephen Curry",
-                rarity: "Rare",
-                attackPoints: 9200,
-                defensePoints: 8500,
-                imageUrl: "https://example.com/curry.jpg",
-                collectionId: nbaLegends.id,
-            },
-        }),
-        prisma.card.create({
-            data: {
-                name: "Kevin Durant",
-                rarity: "Rare",
-                attackPoints: 9300,
-                defensePoints: 8600,
-                imageUrl: "https://example.com/durant.jpg",
-                collectionId: nbaLegends.id,
-            },
+                    name: "Carisma",
+                    value: 18
+                },  
+                {
+                    name: "Lealdade",
+                    value: 18
+                },
+                {
+                    name: "Coragem",
+                    value: 19
+                },
+                {
+                    name: "Influência", 
+                    value: 12
+                }
+            ],
+            imageUrl: "https://example.com/jonsnow.jpg",
+            titles: [
+                { name: "Regicida" },
+                { name: "Lorde Comandante da Guarda Real" },
+                { name: "O Maneta" }
+            ]
+        },
         }),
     ]);
 
-    console.log(`Seed concluído! Criadas ${await prisma.house.count()} casas.`);
+    console.log("Casas criadas. Inserindo cards...");
+
+    // const nbaCards = await Promise.all([
+    //     prisma.card.create({
+    //         data: {
+    //             name: "Michael Jordan",
+    //             rarity: "Ultra Rare",
+    //             attackPoints: 9800,
+    //             defensePoints: 9200,
+    //             imageUrl: "https://example.com/jordan.jpg",
+    //             collectionId: nbaLegends.id,
+    //         },
+    //     }),
+    //     prisma.card.create({
+    //         data: {
+    //             name: "LeBron James",
+    //             rarity: "Ultra Rare",
+    //             attackPoints: 9700,
+    //             defensePoints: 9500,
+    //             imageUrl: "https://example.com/lebron.jpg",
+    //             collectionId: nbaLegends.id,
+    //         },
+    //     }),
+    //     prisma.card.create({
+    //         data: {
+    //             name: "Kobe Bryant",
+    //             rarity: "Ultra Rare",
+    //             attackPoints: 9600,
+    //             defensePoints: 9300,
+    //             imageUrl: "https://example.com/kobe.jpg",
+    //             collectionId: nbaLegends.id,
+    //         },
+    //     }),
+    //     prisma.card.create({
+    //         data: {
+    //             name: "Magic Johnson",
+    //             rarity: "Super Rare",
+    //             attackPoints: 9400,
+    //             defensePoints: 8700,
+    //             imageUrl: "https://example.com/magic.jpg",
+    //             collectionId: nbaLegends.id,
+    //         },
+    //     }),
+    //     prisma.card.create({
+    //         data: {
+    //             name: "Larry Bird",
+    //             rarity: "Super Rare",
+    //             attackPoints: 9300,
+    //             defensePoints: 8800,
+    //             imageUrl: "https://example.com/bird.jpg",
+    //             collectionId: nbaLegends.id,
+    //         },
+    //     }),
+    //     prisma.card.create({
+    //         data: {
+    //             name: "Shaquille O'Neal",
+    //             rarity: "Super Rare",
+    //             attackPoints: 9500,
+    //             defensePoints: 9400,
+    //             imageUrl: "https://example.com/shaq.jpg",
+    //             collectionId: nbaLegends.id,
+    //         },
+    //     }),
+    //     prisma.card.create({
+    //         data: {
+    //             name: "Stephen Curry",
+    //             rarity: "Rare",
+    //             attackPoints: 9200,
+    //             defensePoints: 8500,
+    //             imageUrl: "https://example.com/curry.jpg",
+    //             collectionId: nbaLegends.id,
+    //         },
+    //     }),
+    //     prisma.card.create({
+    //         data: {
+    //             name: "Kevin Durant",
+    //             rarity: "Rare",
+    //             attackPoints: 9300,
+    //             defensePoints: 8600,
+    //             imageUrl: "https://example.com/durant.jpg",
+    //             collectionId: nbaLegends.id,
+    //         },
+    //     }),
+    // ]);
+
+    console.log(`Seed concluído! ${await prisma.house.count()} casas e ${await prisma.character.count()} personagens.`);
 }
 
 main()
