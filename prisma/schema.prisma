@@ -26,17 +26,15 @@ model House {
 }
 
 model Character {
-  id       Int     @id @default(autoincrement())
-  name     String
-  imageUrl String?
+  id        Int     @id @default(autoincrement())
+  name      String
+  atributes Json[]
+  imageUrl  String?
   titles    Json[]
 
-  actor Actor?
-
-  atributes Json[]
-
+  actor   Actor?
   houseId Int
-  house   House @relation(fields: [houseId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  house   House  @relation(fields: [houseId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -62,6 +60,12 @@ model Actor {
 model Castle {
   id   Int    @id @default(autoincrement())
   name String
+  imageUrl String?
+  history  String?
+  x       Float?
+  y       Float?
+  emoji    String?
+  
 
   houseId Int?
   house   House? @relation(fields: [houseId], references: [id])
@@ -80,6 +84,8 @@ model Book {
   coverUrl    String?
   coverAlt    String?
   synopsis    String?
+  rating      Float?
+  pages       Int?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
