@@ -1028,8 +1028,6 @@ async function main() {
     },
   });
 
-  // ...existing code...
-
   console.log("Casa e personagens criados, inserindo atores...");
 
   const actors = await Promise.all([
@@ -1567,7 +1565,7 @@ async function main() {
   const books = await Promise.all([
     prisma.book.create({
       data: {
-        title: "Guerra dos tronos",
+        title: "A Guerra dos tronos",
         volume: 1,
         coverUrl:
           "https://github.com/pedro-ols/me-in-westeros-front/blob/main/public/images/covers/a_game_of_thrones.png?raw=true",
@@ -1582,7 +1580,7 @@ async function main() {
     }),
     prisma.book.create({
       data: {
-        title: "Fúria dos reis",
+        title: "A Fúria dos reis",
         volume: 2,
         coverUrl:
           "https://github.com/pedro-ols/me-in-westeros-front/blob/main/public/images/covers/a_clash_of_kings.png?raw=true",
@@ -1597,7 +1595,7 @@ async function main() {
     }),
     prisma.book.create({
       data: {
-        title: "Tormenta de espadas",
+        title: "A Tormenta de espadas",
         volume: 3,
         coverUrl:
           "https://github.com/pedro-ols/me-in-westeros-front/blob/main/public/images/covers/a_storm_of_swords.png?raw=true",
