@@ -43,6 +43,9 @@ Execute os comandos na seguinte ordem:
 # Instalar dependências
 npm install
 
+# Instalar biblioteca de comunicação full-stack
+npm install cors
+
 # Executar migrações do banco de dados
 npx prisma migrate dev
 
@@ -88,7 +91,6 @@ O projeto utiliza **Prisma ORM** com **PostgreSQL** e inclui as seguintes entida
 npm run dev          # Inicia o servidor em modo desenvolvimento
 
 # Banco de Dados
-npx prisma studio    # Interface visual do banco
 npx prisma generate  # Gera o cliente Prisma
 npx prisma db seed   # Popula o banco com dados iniciais
 
