@@ -1418,16 +1418,16 @@ async function main() {
     },
   });
 
-  const portoReal = await prisma.castle.create({
+  const fortalezaVermelha = await prisma.castle.create({
     data: {
-      name: "Porto Real",
+      name: "Fortaleza Vermelha",
       x: 58,
       y: 60,
       emoji: "👑",
       imageUrl:
-        "https://github.com/pedro-ols/me-in-westeros-front/blob/main/public/images/castles/porto_real.png?raw=true",
+        "https://github.com/pedro-ols/me-in-westeros-front/blob/main/public/images/castles/red_keep.png?raw=true",
       history:
-        "Porto Real é a capital dos Sete Reinos e sede do Trono de Ferro. É a maior cidade de Westeros e centro do poder político.",
+        "A Fortaleza Vermelha é a sede do Trono de Ferro e a residência oficial dos reis dos Sete Reinos, localizada em Porto Real.",
       houseId: baratheon.id,
     },
   });
